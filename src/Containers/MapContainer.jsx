@@ -3,6 +3,8 @@
 import React from 'react';
 import '../App.css';
 import '../Map.css';
+import IncidentFeed from '../IncidentFeed';
+import MessageFeed from '../MessageFeed';
 import mapboxgl from 'mapbox-gl'
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXAPIKEY;
@@ -34,6 +36,10 @@ export default class MapContainer extends React.Component {
 						<div id="map"></div>
 					</div>
 					<div className="sidebar">
+						<section id="FileReport">
+							<a href="#" className="btn" id="newreport">+ File report</a>
+							<hr/>
+						</section>
 						<section>
 							<h2>Data layers</h2>
 							<div className="row layers">
@@ -46,9 +52,9 @@ export default class MapContainer extends React.Component {
 							</div>
 							<hr/>
 						</section>
-						<section>
-							<a href="#" className="btn" id="newreport">+ File report</a>
-						</section>
+
+						<IncidentFeed />
+						<MessageFeed />
 					</div>
 				</div>
 			</section>

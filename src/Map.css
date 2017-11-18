@@ -73,3 +73,18 @@ hr{
 #newreport:hover{
 	background-color: #9a3614;
 }
+.MessageFeed {
+
+}
+.MessageFeed ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.MessageFeed .title {
+	
+}
+.MessageFeed .desc {
+	
+}
+
