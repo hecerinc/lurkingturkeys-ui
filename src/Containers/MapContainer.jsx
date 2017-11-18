@@ -5,10 +5,10 @@ import '../App.css';
 import '../Map.css';
 import IncidentFeed from '../IncidentFeed';
 import MessageFeed from '../MessageFeed';
-import mapboxgl from 'mapbox-gl';
+// import mapboxgl from 'mapbox-gl';
 import request from 'request';
 
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOXAPIKEY;
+// mapboxgl.accessToken = process.env.REACT_APP_MAPBOXAPIKEY;
 
 // TODO: Add mines porque pesa 25 MB
 const dataLayers = [
@@ -74,6 +74,7 @@ export default class MapContainer extends React.Component {
 	}
 	componentDidMount() {
 		const { lng, lat, zoom } = this.state;
+		/*
 		const map = new mapboxgl.Map({
 			container: 'map',
 			style: 'mapbox://styles/mapbox/streets-v10',
@@ -117,7 +118,7 @@ export default class MapContainer extends React.Component {
 					map.addLayer(opts);
 				});
 			});
-		})
+		})*/
 
 	}
 	toggleLayer(key, event) {
@@ -139,7 +140,7 @@ export default class MapContainer extends React.Component {
 					</div>
 					<div className="sidebar">
 						<section id="FileReport">
-							<a href="#" className="btn" id="newreport">+ File report</a>
+							<a href="https://docs.google.com/forms/d/e/1FAIpQLSciJzaDrGzSpt-wrSrBvnq-KRW36TdTrlvJKaEMydIfUVBkcw/viewform?usp=sf_link" target="_blank" className="btn" id="newreport">+ File report</a>
 							<hr/>
 						</section>
 						<section>
