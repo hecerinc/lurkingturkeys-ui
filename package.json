@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "dotenv": "^4.0.0",
+    "mapbox-gl": "^0.42.1",
     "normalize.css": "^7.0.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
