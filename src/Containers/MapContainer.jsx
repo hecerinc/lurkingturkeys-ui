@@ -5,9 +5,62 @@ import '../App.css';
 import '../Map.css';
 import IncidentFeed from '../IncidentFeed';
 import MessageFeed from '../MessageFeed';
-import mapboxgl from 'mapbox-gl'
+import mapboxgl from 'mapbox-gl';
+import request from 'request';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXAPIKEY;
+
+// TODO: Add mines porque pesa 25 MB
+const dataLayers = [
+	{
+		type: 'circle',
+		name: 'Fuel storage',
+		color: '#FF5349',
+		filename: 'almacenamiento_refi.geojson'
+	},
+	{
+		type: 'circle',
+		name: 'Landfills',
+		color: '#292C44',
+		filename: 'basureros.geojson'
+	},
+	{
+		type: 'line',
+		name: 'Pipe lines',
+		color: '#18CDCA',
+		filename: 'oleoductos.geojson'
+	},
+	{
+		type: 'fill',
+		name: 'Indigenous communities',
+		color: '#4F80E1',
+		filename: 'poblacion_indigena.geojson.json'
+	},
+	{
+		type: 'circle',
+		name: 'Power plants',
+		color: '#1FAB9E',
+		filename: 'powerplants.geojson'
+	},
+	{
+		type: 'circle',
+		name: 'Dams',
+		color: '#FAD02F',
+		filename: 'presas.geojson'
+	},
+	{
+		type: 'circle',
+		name: 'Refineries',
+		color: '#F16950',
+		filename: 'refinerias.geojson.json'
+	}//,
+	// {
+	// 	type: 'line',
+	// 	name: '',
+	// 	color: '#F16950',
+	// 	filename: 'vias_ferreas.geojson.json'
+	// }
+];
 
 export default class MapContainer extends React.Component {
 	constructor() {
@@ -16,17 +69,66 @@ export default class MapContainer extends React.Component {
 			lat: 23.2199952,
 			lng: -102.1720662,
 			zoom: 6,
-			layers: ['Mines', 'Polluted water sources', 'Dams', 'Poverty', 'Indigenous communities', 'Landfills', 'PM2.5', 'Power plants'] // power plants includes refineries
+			layers: ['Mines', 'Polluted water sources', 'Dams', 'Poverty', 'Indigenous communities', 'Landfills', 'PM2.5', 'Power plants', 'Fuel storage'] // power plants includes refineries
 		};
 	}
 	componentDidMount() {
 		const { lng, lat, zoom } = this.state;
 		const map = new mapboxgl.Map({
-		    container: 'map',
-		    style: 'mapbox://styles/mapbox/streets-v10',
-		    center: [lng, lat],
-		    zoom
+			container: 'map',
+			style: 'mapbox://styles/mapbox/streets-v10',
+			center: [lng, lat],
+			zoom
 		});
+		this.map = map;
+		map.on('load', () => {
+			// return true;
+			dataLayers.forEach((datafile) => {
+				let layername = datafile.filename.substring(0, datafile.filename.indexOf('.'));
+				request('http://localhost:8080/data/' + datafile.filename, (error, response, body) => {
+					const opts = {
+						id: layername,
+						type: datafile.type,
+						source: {
+							type: 'geojson',
+							data: JSON.parse(body)
+						},
+						layout: {
+							visibility: 'none'
+						}
+					};
+					if(datafile.type === "circle") {
+						opts.paint = {
+							'circle-color': datafile.color,
+							'circle-radius': 10
+						};
+					}
+					else if(datafile.type === "fill") {
+						opts.paint = {
+							'fill-color': 'rgba(255,196,0, .4)'
+						};
+					}
+					else if(datafile.type === "line") {
+						opts.paint = {
+							'line-color': '#e55e5e',
+							'line-width': 3
+						};
+					}
+					map.addLayer(opts);
+				});
+			});
+		})
+
+	}
+	toggleLayer(key, event) {
+		let visibility = this.map.getLayoutProperty(key, 'visibility');
+		if(!event.target.checked) {
+			this.map.setLayoutProperty(key, 'visibility', 'none');
+			// this.className = '';
+		} else {
+			// this.className = 'active';
+			this.map.setLayoutProperty(key, 'visibility', 'visible');
+		}
 	}
 	render() {
 		return (
@@ -43,12 +145,15 @@ export default class MapContainer extends React.Component {
 						<section>
 							<h2>Data layers</h2>
 							<div className="row layers">
-								{this.state.layers.map(layer => (
-									<label>
-										<input type="checkbox" />
-										{layer}
-									</label>
-								))}
+								{dataLayers.map((layer, index) => {
+									let layername = layer.filename.substring(0, layer.filename.indexOf('.'));
+
+									return (
+									<label key={index}>
+										<input type="checkbox" onClick={(e) => {this.toggleLayer(layername, e)}} />
+										{layer.name}
+									</label> );
+								})}
 							</div>
 							<hr/>
 						</section>
