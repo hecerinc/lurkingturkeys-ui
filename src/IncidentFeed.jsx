@@ -6,7 +6,7 @@ import ReportListItem from './ReportListItem';
 import './ReportListItem.css';
 
 
-const sheetURL = "https://sheets.googleapis.com/v4/spreadsheets/1Pr5SJ-EBbWDoQeVKcMuxeKMuX25ZTdKIWppGrkVDgPw/values/Sheet1";
+const sheetURL = "https://sheets.googleapis.com/v4/spreadsheets/1Pr5SJ-EBbWDoQeVKcMuxeKMuX25ZTdKIWppGrkVDgPw/values/Sheet1!A1:J7";
 const sheetKEY = process.env.REACT_APP_SHEETSAPIKEY;
 
 export default class IncidentFeed extends React.Component {
@@ -43,6 +43,9 @@ export default class IncidentFeed extends React.Component {
 						})}
 					</ul>
 				</div>
+				<a href="#" className="btn download downloaddata">Download Report</a>
+				<a href="#" className="btn download downloadpdf">Download Data</a>
+				
 				<a href="#" className="seemorelink">View all</a>
 				<hr/>
 			</section>

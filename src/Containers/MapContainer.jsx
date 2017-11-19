@@ -4,11 +4,11 @@ import React from 'react';
 import '../App.css';
 import '../Map.css';
 import IncidentFeed from '../IncidentFeed';
-import MessageFeed from '../MessageFeed';
-// import mapboxgl from 'mapbox-gl';
+// import MessageFeed from '../MessageFeed';
+import mapboxgl from 'mapbox-gl';
 import request from 'request';
 
-// mapboxgl.accessToken = process.env.REACT_APP_MAPBOXAPIKEY;
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOXAPIKEY;
 
 // TODO: Add mines porque pesa 25 MB
 const dataLayers = [
@@ -74,7 +74,6 @@ export default class MapContainer extends React.Component {
 	}
 	componentDidMount() {
 		const { lng, lat, zoom } = this.state;
-		/*
 		const map = new mapboxgl.Map({
 			container: 'map',
 			style: 'mapbox://styles/mapbox/streets-v10',
@@ -118,7 +117,7 @@ export default class MapContainer extends React.Component {
 					map.addLayer(opts);
 				});
 			});
-		})*/
+		})
 
 	}
 	toggleLayer(key, event) {
@@ -160,7 +159,7 @@ export default class MapContainer extends React.Component {
 						</section>
 
 						<IncidentFeed />
-						<MessageFeed />
+						{/*<MessageFeed />*/}
 					</div>
 				</div>
 			</section>

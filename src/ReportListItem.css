@@ -41,3 +41,17 @@
 	margin-bottom: 0;
 	margin-top: 10px;
 }
+.downloaddata{
+	margin-top: 40px;
+}
+.download.btn{
+	width: 100%;
+	background: #de4d1d;
+	color: #fff;
+	display: block;
+	line-height: 3em;
+	height: 60px;
+	margin-bottom: 20px;
+	font-size: 20px;
+	font-weight: 300;
+}

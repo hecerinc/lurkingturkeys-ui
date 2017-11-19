@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import ReportsView from './ReportsView';
 
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  Switch
 } from 'react-router-dom'
 
 
@@ -14,7 +16,10 @@ import {
 
 ReactDOM.render((
 	<Router>
-		<Route exact path="/" component={App}></Route>
+		<Switch>
+			<Route exact path="/" component={App}></Route>
+			<Route path="/reports" component={ReportsView}></Route>
+		</Switch>
 	</Router>
 	), document.getElementById('root'));
 // registerServiceWorker();
