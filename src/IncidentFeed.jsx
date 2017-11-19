@@ -4,6 +4,7 @@ import React from 'react';
 import request from 'request';
 import ReportListItem from './ReportListItem';
 import './ReportListItem.css';
+import {Link} from 'react-router-dom'
 
 
 const sheetURL = "https://sheets.googleapis.com/v4/spreadsheets/1Pr5SJ-EBbWDoQeVKcMuxeKMuX25ZTdKIWppGrkVDgPw/values/Sheet1!A1:J7";
@@ -43,10 +44,10 @@ export default class IncidentFeed extends React.Component {
 						})}
 					</ul>
 				</div>
-				<a href="#" className="btn download downloaddata">Download Report</a>
-				<a href="#" className="btn download downloadpdf">Download Data</a>
+				<a href="http://localhost:8080/data/summary.pdf" target="_blank" className="btn download downloaddata">Download Report</a>
+				<a href="https://docs.google.com/spreadsheets/d/1Pr5SJ-EBbWDoQeVKcMuxeKMuX25ZTdKIWppGrkVDgPw/edit?usp=sharing"  target="_blank" className="btn download downloadpdf">Download Data</a>
 				
-				<a href="#" className="seemorelink">View all</a>
+				<Link to="/reports" className="seemorelink">View all</Link>
 				<hr/>
 			</section>
 		);

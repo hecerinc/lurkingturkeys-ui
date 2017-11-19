@@ -53,14 +53,14 @@ const dataLayers = [
 		type: 'fill',
 		name: 'Percent poverty municipality',
 		filename: 'poverty.geojson',
-		fill: 'rgba(210,35,81, .5)'
+		fill: 'rgba(3,39,90, .5)'
 	},
-	{
-		type: 'circle',
-		color: '#3F80E1',
-		filename: 'ej_atlas_data.json',
-		name: 'Environmental Justice Atlas'
-	},
+	// {
+	// 	type: 'circle',
+	// 	color: '#3F80E1',
+	// 	filename: 'ej_atlas_data.json',
+	// 	name: 'Environmental Justice Atlas'
+	// },
 	{
 		type: 'circle',
 		name: 'Refineries',
@@ -153,6 +153,7 @@ export default class MapContainer extends React.Component {
 					<div className="sidebar">
 						<section id="FileReport">
 							<a href="https://docs.google.com/forms/d/e/1FAIpQLSciJzaDrGzSpt-wrSrBvnq-KRW36TdTrlvJKaEMydIfUVBkcw/viewform?usp=sf_link" target="_blank" className="btn" id="newreport">+ File report</a>
+							<a href="https://docs.google.com/spreadsheets/d/1wjHCJ_0B3_kU42iKW32IgEeria27aRVC-G_OHQc4Ves/edit#gid=0" target="_blank" className="datasourceslink" >Data sources</a>
 							<hr/>
 						</section>
 						<section>

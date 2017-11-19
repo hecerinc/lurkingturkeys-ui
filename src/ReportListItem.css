@@ -33,7 +33,7 @@
 	font-size: 12px;
 	margin-top: 5px;
 }
-.seemorelink {
+.seemorelink, .datasourceslink {
 	text-align: center;
 	width: 100%;
 	color: #33C3F0;

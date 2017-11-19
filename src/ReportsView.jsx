@@ -6,6 +6,7 @@ import request from 'request';
 import './App.css';
 import './Map.css';
 import './ReportsView.css';
+import {Link} from 'react-router-dom';
 
 const sheetURL = "https://sheets.googleapis.com/v4/spreadsheets/1Pr5SJ-EBbWDoQeVKcMuxeKMuX25ZTdKIWppGrkVDgPw/values/Sheet1!A1:J7";
 const sheetKEY = process.env.REACT_APP_SHEETSAPIKEY;
@@ -74,7 +75,7 @@ export default class ReportsView extends React.Component {
 					</div>
 					<div className="sidebar orange">
 						<section>
-							<a href="#" className="btn white">Back to map</a>
+							<Link to="/" className="btn white">Back to map</Link>
 						</section>
 					</div>
 				</div>
