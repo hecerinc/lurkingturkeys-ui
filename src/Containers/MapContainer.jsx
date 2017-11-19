@@ -33,7 +33,8 @@ const dataLayers = [
 	{
 		type: 'fill',
 		name: 'Indigenous communities',
-		color: '#4F80E1',
+		color: '#3F80E1',
+		fill: 'rgba(255,196,0, .4)',
 		filename: 'poblacion_indigena.geojson.json'
 	},
 	{
@@ -47,6 +48,18 @@ const dataLayers = [
 		name: 'Dams',
 		color: '#FAD02F',
 		filename: 'presas.geojson'
+	},
+	{
+		type: 'fill',
+		name: 'Percent poverty municipality',
+		filename: 'poverty.geojson',
+		fill: 'rgba(210,35,81, .5)'
+	},
+	{
+		type: 'circle',
+		color: '#3F80E1',
+		filename: 'ej_atlas_data.json',
+		name: 'Environmental Justice Atlas'
 	},
 	{
 		type: 'circle',
@@ -105,7 +118,7 @@ export default class MapContainer extends React.Component {
 					}
 					else if(datafile.type === "fill") {
 						opts.paint = {
-							'fill-color': 'rgba(255,196,0, .4)'
+							'fill-color': datafile.fill
 						};
 					}
 					else if(datafile.type === "line") {
